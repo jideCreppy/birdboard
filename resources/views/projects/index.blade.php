@@ -8,9 +8,15 @@
 </head>
 <body>
     
-    @foreach ($projects as $project)
-     {{$project->title}}   
-    @endforeach
+    @forelse ($projects as $project)
+     <ul>
+         <li>
+             <a href="{{$project->path()}}">{{$project->title}}</a>
+        </li>
+     </ul>
+     @empty
+         No Project Found
+    @endforelse
 
 </body>
 </html>

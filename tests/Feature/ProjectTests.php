@@ -53,7 +53,7 @@ class ProjectTests extends TestCase
         $this->post('/projects',$attributes)->assertSessionHasErrors('title');
     }
 
-        /**
+    /**
      * @test
      */
     public function a_project_requires_a_description()
@@ -63,5 +63,17 @@ class ProjectTests extends TestCase
         ]);
 
         $this->post('/projects', $attributes)->assertSessionHasErrors('description');
+    }
+
+
+    /**
+     * @test
+     */
+    public function a_user_can_view_a_project()
+    {
+        $this->withOutExceptionHandling();
+        $project = factory('App\Project')->create();
+
+        $this->get($project->path())->assertSee($project->title)->assertSee($project->description);
     }
 }
