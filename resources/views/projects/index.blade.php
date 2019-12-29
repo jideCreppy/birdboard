@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
    <div class="flex items-center mb-5">
-        <h1 class="mr-auto">Welcome</h1>
+        <h1 class="mr-auto text-2xl">Welcome</h1>
         <a href='projects/create'>Create Project</a>
    </div>
     @forelse ($projects as $project)
