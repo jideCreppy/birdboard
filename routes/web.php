@@ -12,21 +12,17 @@ use App\Project;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/projects');
 });
 
 Route::group(['middleware' => 'auth'], function () {
 
-Route::get('projects','ProjectsController@index');
-Route::get('projects/create', 'ProjectsController@create');
-Route::get('/projects/{project}', 'ProjectsController@show');
-Route::post('/projects', 'ProjectsController@store');
-Route::get('/home', 'HomeController@index');
-    
+    Route::get('projects','ProjectsController@index');
+    Route::get('projects/create', 'ProjectsController@create');
+    Route::get('/projects/{project}', 'ProjectsController@show');
+    Route::post('/projects', 'ProjectsController@store');
+    Route::get('/home', 'HomeController@index');
+
 });
 
-
-
-
 Auth::routes();
-
