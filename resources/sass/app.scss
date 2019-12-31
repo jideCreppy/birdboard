@@ -19,6 +19,13 @@
     box-shadow: 0 2px 7px 0 #b0aff;
 }
 
-.border-custom{
+.border-custom-left{
     border-left:4px solid #8ae2fe;
+}
+.card {
+    @apply .bg-white .p-5 .rounded-lg .shadow h-56;
+}
+
+.card-show {
+    @apply .bg-white .p-5 .rounded-lg .shadow;
 }

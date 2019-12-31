@@ -3,21 +3,15 @@
 @section('content')
 <div class="container mx-auto">
    <header class="flex items-center mb-5 py-4">
-        <div class="flex justify-between items-center w-full">
+        <div class="flex justify-between items-end w-full">
             <h3 class="text-gray-100 font-normal">My Projects</h3>
             <a href='projects/create' class="button">Create Project</a>
         </div>
    </header>
-
    <main class="lg:flex lg:flex-wrap lg:justify-between -mx-1">
        @forelse ($projects as $project)
             <div class="lg:w-1/5 px-1 pb-6">
-                <div class="bg-white p-5 rounded-lg shadow h-56">
-                    <a href="{{$project->path()}}" class="text-black no-underline">
-                        <h3 class="font-normal border-custom text-2xl py-4 mb-3 -ml-5 pl-4"> {{ str_limit($project->title,17)}}</h3>
-                    </a>
-                    <div class="text-gray-100">{{ str_limit($project->description,100)}}</div>
-                </div>
+                @include('layouts.projects.card')
             </div>
 
        @empty

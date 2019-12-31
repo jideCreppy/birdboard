@@ -10813,8 +10813,23 @@
   box-shadow: 0 2px 7px 0 #b0aff;
 }
 
-.border-custom {
+.border-custom-left {
   border-left: 4px solid #8ae2fe;
+}
+
+.card {
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.08);
+  height: 14rem;
+}
+
+.card-show {
+  background-color: #fff;
+  padding: 1.25rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px 0 rgba(0,0,0,0.08);
 }
 
 @media (min-width: 640px){
