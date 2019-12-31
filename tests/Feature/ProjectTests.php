@@ -45,15 +45,13 @@ class ProjectTests extends TestCase
      */
     public function a_user_can_create_a_post() 
     {
-        $this->actingAs(factory('App\User')->create());
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph
-        ];
+        $this->withoutExceptionHandling();
+        $this->signIn();
+        $attributes = factory('App\Project')->raw();
         $this->get('projects/create')->assertOk();
         $this->post('/projects', $attributes)->assertRedirect('/projects');
         $this->get('/projects')->assertSee($attributes['title']);
-        $this->assertDatabaseHas('projects',$attributes);
+        $this->assertDatabaseHas('projects',['title' => $attributes['title']]);
     }
 
     /**
@@ -61,7 +59,7 @@ class ProjectTests extends TestCase
      */
     public function a_project_requires_a_title()
     {
-        $this->actingAs(factory('App\User')->create());
+        $this->signIn();
         $attributes = factory('App\Project')->raw([
             'title' => ''
         ]);
@@ -73,7 +71,7 @@ class ProjectTests extends TestCase
      */
     public function a_project_requires_a_description()
     {
-        $this->actingAs(factory('App\User')->create());
+        $this->signIn();
         $attributes = factory('App\Project')->raw([
             'description' => ''
         ]);
@@ -87,7 +85,7 @@ class ProjectTests extends TestCase
      */
     public function authenticated_users_can_view_their_project()
     {
-        $this->be(factory('App\User')->create());
+        $this->signIn();
         $this->withOutExceptionHandling();
         $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
         $this->get($project->path())->assertSee($project->title)->assertSee($project->description);
@@ -98,7 +96,7 @@ class ProjectTests extends TestCase
      */
     public function authenticated_users_cannot_view_the_project_of_others()
     {
-        $this->be(factory('App\User')->create());
+        $this->signIn();
         $project = factory('App\Project')->create();
         $this->get($project->path())->assertStatus(403);
     }
