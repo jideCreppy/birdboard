@@ -8,12 +8,11 @@
             <a href='projects/create' class="button">Create Project</a>
         </div>
    </header>
-   <main class="lg:flex lg:flex-wrap lg:justify-between -mx-1">
+   <main class="lg:flex lg:flex-wrap lg:justify-evenly -mx-1">
        @forelse ($projects as $project)
             <div class="lg:w-1/5 px-1 pb-6">
                 @include('layouts.projects.card')
             </div>
-
        @empty
             No projects found
        @endforelse

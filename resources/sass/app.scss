@@ -6,13 +6,12 @@
 
 // @tailwind base;
 
+// // Bootstrap
+// @import '~bootstrap/scss/bootstrap';
+
 @tailwind components;
 
 @tailwind utilities;
-
-
-// Bootstrap
-// @import '~bootstrap/scss/bootstrap';
 
 .button{
     @apply .bg-blue-100 .text-white .no-underline .rounded-lg .text-sm .py-2 .px-5;
@@ -29,3 +28,5 @@
 .card-show {
     @apply .bg-white .p-5 .rounded-lg .shadow;
 }
+
+
