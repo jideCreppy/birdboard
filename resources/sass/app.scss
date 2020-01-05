@@ -29,4 +29,11 @@
     @apply .bg-white .p-5 .rounded-lg .shadow;
 }
 
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
 
