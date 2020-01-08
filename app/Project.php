@@ -5,11 +5,16 @@ namespace App;
 use App\Task;
 use App\User;
 use App\Activity;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
+    use RecordsActivity;
+
     protected $guarded = [];
+
+    protected static $recordableEvents = ['created', 'updated'];
 
     public function path()
     {
@@ -36,15 +41,6 @@ class Project extends Model
     public function activity()
     {
         return $this->hasMany(Activity::class)->latest();
-    }
-
-    public function recordActivity($type)
-    {
-        Activity::create(
-            [
-                'project_id' => $this->id, 
-                'description' => $type
-            ]);
     }
 }
 
