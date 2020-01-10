@@ -92,7 +92,24 @@ class ProjectTests extends TestCase
 
     }
 
-        /**
+    /**
+     * @test
+     */
+
+     public function authenticated_users_can_delete_a_project()
+     {
+         $this->withoutExceptionHandling();
+
+         $this->signIn();
+
+         $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+         
+         $this->delete($project->path())->assertRedirect('/projects');
+
+         $this->assertDatabaseMissing('projects', $project->only('id'));
+     }
+
+    /**
      * @test
      */
     public function a_user_can_only_update_a_projects_notes()
