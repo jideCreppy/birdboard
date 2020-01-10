@@ -191,4 +191,23 @@ class ProjectTests extends TestCase
 
         $this->get($project->path())->assertStatus(403);
     }
+
+    /**
+     * @test
+     */
+    public function a_user_can_see_all_projects_they_have_been_invited_to_on_their_dashboard()
+    {
+        $this->withoutExceptionHandling();
+        
+        $user = factory('App\User')->create();
+
+        $this->signIn($user);
+
+        $project = factory('App\Project')->create();
+
+        $project->invite($user);
+
+        $this->get('/projects')->assertSee($project->title);
+
+    }
 }

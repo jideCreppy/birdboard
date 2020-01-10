@@ -45,13 +45,12 @@ class Project extends Model
 
     public function invite($user)
     {
-
         return $this->members()->attach($user);
     }
 
     public function members()
     {
-        return $this->belongsToMany(User::class, 'project_members');
+        return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
     }
 
 }
