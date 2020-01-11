@@ -7,7 +7,14 @@
                 <p class="text-gray-100 font-normal">
                     <a href="/projects" class="text-gray-100 no-underline font-normal">My Projects</a> / {{$project->title}}
                 </p>
-            <a href="{{$project->path().'/edit'}}" class="button">Edit Project</a>
+                <div class="flex items-center">
+                    @foreach ($project->members as $members)
+                    {{-- &d=https://s3.amazonaws.com/laracasts/images/default-square-avatar.jpg --}}
+                        <img src="{{gravatar_url($members->email)}}" alt="{{ $members->name }}" class="rounded-full w-8 mr-2"/>
+                    @endforeach
+                <img src="{{gravatar_url($project->owner->email)}}" alt="{{ $project->owner->name }}" class="rounded-full w-8 mr-2"/>
+                    <a href="{{$project->path().'/edit'}}" class="button ml-4">Edit Project</a>
+                </div>
             </div>
        </header>
        <main>
