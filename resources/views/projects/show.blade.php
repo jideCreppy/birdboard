@@ -62,13 +62,7 @@
                         <input type="submit" value="Submit" class="button border-0 mt-4">
                     </form>
 
-                    @if($errors->any())
-                        <div class="mt-6">
-                            @foreach ($errors->all() as $error)
-                                <li class="text-sm text-red-700"> {{$error}} </li>
-                            @endforeach
-                        </div>
-                    @endif
+                    @include('errors')
                     
                     </section>
                 </div>
@@ -76,6 +70,7 @@
                 <aside class="w-1/4 px-3 mt-8">
                     @include('layouts.projects.card')
                     @include('layouts.activity.card')
+                    @include('layouts.invitations.card')
                 </aside>
            </div>
        </main>
